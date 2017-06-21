@@ -16,6 +16,7 @@ import java.net.URLConnection;
 public class test {
 
     public static void main(String args[]) throws IOException {
+        /*
         URL oracle = new URL("https://statsapi.web.nhl.com/api/v1/schedule?startDate=2017-03-15&endDate=2017-03-15&expand=schedule.teams,schedule.linescore");
         URLConnection yc = oracle.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -28,5 +29,15 @@ public class test {
 
         TableTeam table = TableTeam.getInstance();
         TableTeam.getInstance();
+        */
+
+        URL oracle1 = new URL("https://statsapi.web.nhl.com//api/v1/game/2016021033/feed/live");
+        URLConnection yc1 = oracle1.openConnection();
+        BufferedReader in1 = new BufferedReader(new InputStreamReader(
+                yc1.getInputStream()));
+        InputStream inputLine1 = yc1.getInputStream();
+        JsonReader reader1 = new JsonReader(new InputStreamReader(inputLine1));
+        JsonDetailMatch jsonTools1 = new JsonDetailMatch(reader1);
+        jsonTools1.parseDetailGame();
     }
 }
