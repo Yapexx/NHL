@@ -1,6 +1,8 @@
 package data_getter;
 
 import com.google.gson.stream.JsonReader;
+import pojo.StatsAwayMatch;
+import pojo.StatsHomeMatch;
 
 import java.io.IOException;
 
@@ -8,7 +10,8 @@ import java.io.IOException;
  * Created by yannx_000 on 18/06/2017.
  */
 public class JsonDetailMatch extends JsonTools {
-
+    private StatsHomeMatch homeStats;
+    private StatsAwayMatch awayStats;
 
     public JsonDetailMatch(JsonReader reader) {
         super(reader);
