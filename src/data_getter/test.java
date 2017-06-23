@@ -31,7 +31,7 @@ public class test {
         TableTeam.getInstance();
         */
 
-        ReaderProvider rd = new ReaderProvider("https://statsapi.web.nhl.com/api/v1/game/2016021033/feed/live");
+        ReaderProvider rd = ReaderProvider.getInstance("https://statsapi.web.nhl.com/api/v1/game/2016021033/feed/live");
         /*
         URL oracle1 = new URL("https://statsapi.web.nhl.com//api/v1/game/2016021033/feed/live");
         URLConnection yc1 = oracle1.openConnection();
