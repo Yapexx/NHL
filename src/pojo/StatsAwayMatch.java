@@ -8,6 +8,7 @@ public class StatsAwayMatch {
     private int countMatch;
     private Team homeTeam;
     private int scoredGoal;
+    private int onTargetShotAgainst;
     private int takenGoal;
     private int onTargetShot;
     private float goalEfficiency;
