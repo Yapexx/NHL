@@ -25,6 +25,11 @@ public class PerfAwayTeamDAO extends DAO<PerfAwayTeam> {
 
     @Override
     public PerfAwayTeam find(int id) {
+        System.out.println("Il faut donner un autre entier pour déterminer le match");
+        return null;
+    }
+
+    public PerfAwayTeam find(int id, int count) {
         return null;
     }
 }

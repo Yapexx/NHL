@@ -1,21 +1,49 @@
 package data_getter;
 
 import com.google.gson.stream.JsonReader;
+import pojo.Match;
 import pojo.TableTeam;
 import pojo.Team;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 /**
  * Created by yannx_000 on 18/06/2017.
  */
 public class JsonGlobalMatch extends JsonTools {
-    private ArrayList matchList = new ArrayList();
+    private Match match;
+    private String linkDetailMatch = "";
     private int totalGames = 0;
 
     public JsonGlobalMatch(JsonReader reader) {
         super(reader);
+    }
+
+    private void setMatch(int idMatch, Team homeTeam, Team awayTeam, boolean overtime, boolean shootOut, Team winner){
+        this.match = new Match(idMatch, homeTeam, awayTeam, overtime, shootOut, winner);
+    }
+
+    public String getLinkDetailMatch() {
+        return (this.linkDetailMatch);
+    }
+
+    public int getTotalGames() {
+        return (this.totalGames);
+    }
+
+    public Match getMatch() {
+        return (this.match);
+    }
+
+    public void numberTotalMatch() throws IOException {
+        this.findName("totalGames");
+        totalGames = this.reader.nextInt();
+    }
+
+    private void setLinkDetailMatch(int idMatch) {
+        String link = "https://statsapi.web.nhl.com/api/v1/game/";
+        link = link + idMatch + "/feed/live";
     }
 
     /**
@@ -30,6 +58,7 @@ public class JsonGlobalMatch extends JsonTools {
 
         if (this.findName("gamePk")) {
             idGame = this.reader.nextInt();
+            this.setLinkDetailMatch(idGame);
         }
         else { //throw Exception more properly
            System.out.println("NAME gamepk not found in Json");
@@ -82,7 +111,11 @@ public class JsonGlobalMatch extends JsonTools {
             winner = homeTeam;
         }
 
+        this.setMatch(idGame, homeTeam, awayTeam, overtime, hasShootout, winner);
+
         //System.out.println(idGame + " " + homeScore + " " + awayScore + " " + homeTeam + awayTeam + hasShootout + overtime + " " +winner);
+
+
 
     }
 }
