@@ -113,6 +113,7 @@ public class JsonGlobalMatch extends JsonTools {
 
         this.setMatch(idGame, homeTeam, awayTeam, overtime, hasShootout, winner);
 
+
         //System.out.println(idGame + " " + homeScore + " " + awayScore + " " + homeTeam + awayTeam + hasShootout + overtime + " " +winner);
 
 

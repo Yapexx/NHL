@@ -13,18 +13,18 @@ import java.net.URLConnection;
  */
 
 public class ReaderProvider {
-    String url;
-    JsonReader reader;
+    private String url;
+    private JsonReader reader;
     private static ReaderProvider readerProvider = null;
 
     private ReaderProvider(String url) throws IOException{
         this.url = url;
-        urlToJsonReader();
+        this.urlToJsonReader();
     }
 
     public static ReaderProvider getInstance(String url) throws IOException {
         if (readerProvider == null) {
-            new ReaderProvider(url);
+            readerProvider = new ReaderProvider(url);
         }
         return (readerProvider);
     }
@@ -42,7 +42,10 @@ public class ReaderProvider {
 
     public void setUrl(String url) throws IOException{
         this.url = url;
-        urlToJsonReader();
+        this.urlToJsonReader();
     }
 
+    public String getUrl() {
+        return this.url;
+    }
 }

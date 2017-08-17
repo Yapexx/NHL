@@ -8,7 +8,6 @@ public class StatsAwayMatch {
     private int countMatch;
     private Team homeTeam;
     private int scoredGoal;
-    private int onTargetShotAgainst;
     private int takenGoal;
     private int onTargetShot;
     private float goalEfficiency;
@@ -20,10 +19,10 @@ public class StatsAwayMatch {
     private int powerPlayTakenGoal;
     private int powerPlayPenalty;
     private float powerPlayDefense;
-    private float faceoffWinPercentage;
 
 
-    public StatsAwayMatch(int idMatch, int countMatch, Team homeTeam, int savedShot, float savedRate, int scoredGoal, int takenGoal, int onTargetShot, float goalEfficiency, int powerPlayScoredGoal, int powerPlayOpportunitie, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense, int powerlayPercent, float faceoffWinPercentage) {
+
+    public StatsAwayMatch(int idMatch, int countMatch, Team homeTeam, int savedShot, float savedRate, int scoredGoal, int takenGoal, int onTargetShot, float goalEfficiency, int powerPlayScoredGoal, int powerPlayOpportunitie, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense, int powerlayPercent) {
         this.idMatch = idMatch;
         this.countMatch = countMatch;
         this.homeTeam = homeTeam;
@@ -39,6 +38,5 @@ public class StatsAwayMatch {
         this.powerPlayTakenGoal = powerPlayTakenGoal;
         this.powerPlayPenalty = powerPlayPenalty;
         this.powerPlayDefense = powerPlayDefense;
-        this.faceoffWinPercentage = faceoffWinPercentage;
     }
 }

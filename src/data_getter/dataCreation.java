@@ -19,6 +19,7 @@ public class dataCreation {
                 globalMatchReader.parseGame();
                 rd.setUrl(globalMatchReader.getLinkDetailMatch());
                 JsonDetailMatch detailMatchReader = new JsonDetailMatch(rd.getReader());
+                detailMatchReader.parseDetailGame();
                 //Gérer l'ajout dans la base et le traitement des données dans la base
                 count = count + 1;
             }

@@ -17,21 +17,31 @@ public class JsonDetailMatch extends JsonTools {
         super(reader);
     }
 
+    public StatsHomeMatch getHomeStats() {
+        return (this.homeStats);
+    }
+
+    public StatsAwayMatch getAwayStats() {
+        return (this.awayStats);
+    }
+
     public void parseDetailGame() throws IOException {
-        int onTargetShot = 0, savedShot = 0, powerPlayOpportunity, powerPlayScoredGoal, powerPlayPenalty, powerPlayTakenGoal;
-        //int  scoredGoal, takenGoal;
+        PojoDataGetter treatment;
+        int
+        int onTargetShot = 0, savedShot = 0, powerPlayOpportunity = 0, powerPlayScoredGoal = 0, powerPlayPenalty = 0, powerPlayTakenGoal = 0;
+        int  scoredGoal, takenGoal;
         float faceOfWinPercent = 0;
 
-        //La première team est toujours celle à l'eérieur
+        //La première team est toujours celle à l'extérieur
 
         if(!(this.findName("boxscore"))){ //On a pas vraiment besoin de boxscore
             System.out.print("NAME boxscore absent du json");
         }
 
-        /*
-        Est ce qu'on traite le nombre de buts là ?
-        if( this.findName("goal"))
-        */
+
+        if (this.findName("goals")) {
+            scoredGoal = this.reader.nextInt();
+        }
 
         if(this.findName("shots")){
             onTargetShot = this.reader.nextInt();
@@ -52,7 +62,10 @@ public class JsonDetailMatch extends JsonTools {
         if(!this.findName("teamStats")){
             System.out.println("lever l'exception plus proprement");
         }
-        //Question aussi du nombre de but
+
+        if (this.findName("goals")) {
+            takenGoal = this.reader.nextInt();
+        }
 
         if(this.findName("shots")){
             savedShot = this.reader.nextInt();
@@ -66,7 +79,30 @@ public class JsonDetailMatch extends JsonTools {
             powerPlayPenalty = this.reader.nextInt(); //Surement mettre à -1 si null
         }
 
+        awayStats = new StatsAwayMatch(0, 0, idteam, enattente, attd, onTargetShot, 0, savedShot, 0, powerPlayScoredGoal, powerPlayOpportunity, 0,
+                powerPlayTakenGoal, powerPlayPenalty, 0 );
+        homeStats = new StatsHomeMatch(0, 0, idteam, enattente, attd, onTargetShot, 0, savedShot, 0, powerPlayScoredGoal, powerPlayOpportunity, 0,
+                powerPlayTakenGoal, powerPlayPenalty, 0 );
+
+
+        //On effectue le traitement pour JsonDetailMatch
+        //Récupérer le numéro du match
+        PojoDataGetter treatment = new PojoDataGetter();
+        int countMatchHome = treatment.getCoutMatch(true);
+        int lastMean = treatment.selectMean(countMatchHome, , true, "");
+
+
+
+
+
+
+
+
         System.out.println(onTargetShot + " " + savedShot +  " " + faceOfWinPercent);
+
+        class dataCalcultaion{
+        }
 
     }
 }
+

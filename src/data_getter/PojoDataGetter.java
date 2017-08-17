@@ -5,7 +5,8 @@ import pojo.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+
+import bdd_connection.SdzConnection;
 
 /**
  * Created by yannx_000 on 18/06/2017.
@@ -17,8 +18,8 @@ public class PojoDataGetter {
     //Voir quel attribut rajouter en fonction comment sera utiliser la classe
     private int countMatch;
 
-    public PojoDataGetter(Connection con) {
-        this.conn = conn;
+    public PojoDataGetter() {
+        this.conn = SdzConnection.getInstance();
     }
 
     private String tableName(boolean ishome) {
@@ -41,40 +42,46 @@ public class PojoDataGetter {
         ResultSet result = prepare.executeQuery(query);
         result.next(); //Pour positionner l'objet sur la première ligne
         count = (int)result.getObject(1);
-
+        result.close();
+        prepare.close();
         return (count);
     }
 
-    //Surement faire une factory qui distribue les requêtes pour éviter redondnaces du code
+    //Récupérer les différents taux dépendant d'une somme
+    public int  selectSumValue(Team team, boolean isHome, String typeValue) throws java.sql.SQLException {
+        int sum = 0;
+        String query = "SELECT SUM(?) FROM ?";
+        query += "WHERE team_name = ?";
+        PreparedStatement prepare = conn.prepareStatement(query);
+        prepare.setString(1, typeValue);
+        prepare.setString(2, this.tableName(isHome));
+        prepare.setString(3, team.toString());
+        ResultSet result = prepare.executeQuery();
+        sum = (int)result.getObject(1);
+        result.close();
+        prepare.close();
+        return (sum);
+    }
 
-    //Faire excatement la même chose pour chopper les moyennes de but marqués et encaissés la requête sera la même
 
-    public float getWinnerRate(int countMatch, Team team, boolean isHome) throws java.sql.SQLException{
-        float rate = 0;
-        String query = "SELECT winner_rate FROM ? ";
+    //Fonction générale pour récupérer toutes les moyennes
+
+    public float selectMean(int countMatch, Team team, boolean isHome, String typeMean) throws java.sql.SQLException {
+        float mean = 0;
+        String query = "SELECT ? FROM ? ";
         query += "WHERE team_name = ?";
         query += "AND count = ?";
         PreparedStatement prepare = conn.prepareStatement(query);
-        prepare.setString(1, this.tableName(isHome));
-        prepare.setString(2, team.toString());
-        prepare.setInt(3, countMatch);
-        ResultSet result = prepare.executeQuery(query);
-        rate = (float)result.getObject(1);
-        return (rate);
+        prepare.setString(1, typeMean);
+        prepare.setString(2, this.tableName(isHome));
+        prepare.setString(3, team.toString());
+        prepare.setInt(4, countMatch);
+        ResultSet result = prepare.executeQuery();
+        mean = (float)result.getObject(1);
+        result.close();
+        prepare.close();
+        return (mean);
     }
-
-
-    //Récupérer les différents taux dépendant de 2 inconnues
-    public void getSavedRate() {
-        float rate = 0;
-        String query = "SELECT SUM(), SUM() FROM ?";
-        query += "WHERE team_name = ?";
-    }
-
-
-
-
-
 
 
 }

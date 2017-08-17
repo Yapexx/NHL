@@ -37,6 +37,7 @@ public class test {
         URLConnection yc1 = oracle1.openConnection();
         InputStream inputLine1 = yc1.getInputStream();
         */
+        System.out.println(rd.getUrl());
         JsonDetailMatch jsonTools1 = new JsonDetailMatch(rd.getReader());
         jsonTools1.parseDetailGame();
     }

@@ -29,5 +29,8 @@ public class Match {
     }
 
     //Ajouter setter et getter
+    public int getIdMatch() {
+        return (this.idMatch);
+    }
 
 }

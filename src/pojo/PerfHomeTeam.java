@@ -11,9 +11,11 @@ public class PerfHomeTeam {
     private int takenGoal;
     private float scoredGoalMean;
     private float takenGoalMean;
+    private float faceoffWinPercentageMatch;
+    private float faceoffWinGlobalRate;
     private float winnerRate;
 
-    public PerfHomeTeam(Team homeTeam, int idMatch, int countMatch, int scoredGoal, int takenGoal, float scoredGoalMean, float takenGoalMean, float winnerRate  ) {
+    public PerfHomeTeam(Team homeTeam, int idMatch, int countMatch, int scoredGoal, int takenGoal, float scoredGoalMean, float takenGoalMean, float winnerRate, float faceoffWinPercentageMatch, float faceoffWinGlobalRate ) {
         this.homeTeam = homeTeam;
         this.idMatch = idMatch;
         this.countMatch = countMatch;
@@ -21,6 +23,8 @@ public class PerfHomeTeam {
         this.takenGoal = takenGoal;
         this.scoredGoalMean = scoredGoalMean;
         this.takenGoalMean = takenGoalMean;
+        this.faceoffWinPercentageMatch = faceoffWinPercentageMatch;
+        this.faceoffWinGlobalRate = faceoffWinGlobalRate;
         this.winnerRate = winnerRate;
     }
 }

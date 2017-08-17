@@ -35,7 +35,6 @@ public class JsonTools {
                     break;
                 case "NAME":
                     String test = reader.nextName();
-                    System.out.println(test);
                     find = test.equals(name);
                     break;
                 default:
