@@ -10,6 +10,9 @@ public class Match {
     private boolean shootOut;
     private Team winner;
 
+
+    public Match(){
+    }
     /**
      * Constructor of Match object
      * @param idMatch
@@ -33,4 +36,23 @@ public class Match {
         return (this.idMatch);
     }
 
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
+
+    public Team getAwayTeam() {
+        return awayTeam;
+    }
+
+    public boolean getOvertime() {
+        return overtime;
+    }
+
+    public boolean getShootout() {
+        return shootOut;
+    }
+
+    public Team getWinner() {
+        return winner;
+    }
 }

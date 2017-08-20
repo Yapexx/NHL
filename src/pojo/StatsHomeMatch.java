@@ -4,9 +4,9 @@ package pojo;
  * Created by yannx_000 on 17/06/2017.
  */
 public class StatsHomeMatch {
+    private Team homeTeam;
     private int idMatch;
     private int countMatch;
-    private Team awayTeam;
     private int scoredGoal;
     private int onTargetShot;
     private float goalEfficiency;
@@ -21,10 +21,10 @@ public class StatsHomeMatch {
     private float powerPlayDefense;
 
 
-    public StatsHomeMatch(int idMatch, int countMatch, Team awayTeam, int scoredGoal, int onTargetShot, float goalEfficiency, int takenGoal, int savedShot, float savedRate, int powerPlayScoredGoal, int powerPlayOpportunitie, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense) {
+    public StatsHomeMatch(int idMatch, int countMatch, Team homeTeam, int scoredGoal, int onTargetShot, float goalEfficiency, int takenGoal, int savedShot, float savedRate, int powerPlayScoredGoal, int powerPlayOpportunitie, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense) {
         this.idMatch = idMatch;
         this.countMatch = countMatch;
-        this.awayTeam = awayTeam;
+        this.homeTeam = homeTeam;
         this.scoredGoal = scoredGoal;
         this.onTargetShot = onTargetShot;
         this.goalEfficiency = goalEfficiency;

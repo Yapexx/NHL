@@ -15,6 +15,8 @@ public class PerfAwayTeam {
     private float faceoffWinGlobalRate;
     private float winnerRate;
 
+    public PerfAwayTeam(){}
+
     public PerfAwayTeam(Team awayTeam, int idMatch, int countMatch, int scoredGoal, int takenGoal, float scoredGoalMean, float takenGoalMean, float winnerRate, float faceoffWinPercentageMatch, float faceoffWinGlobalRate  ) {
         this.awayTeam = awayTeam;
         this.idMatch = idMatch;
