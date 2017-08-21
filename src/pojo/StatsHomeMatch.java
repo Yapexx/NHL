@@ -14,14 +14,15 @@ public class StatsHomeMatch {
     private int savedShot;
     private float savedRate;
     private int powerPlayScoredGoal;
-    private int powerPlayOpportunitie;
+    private int powerPlayOpportunity;
     private float powerPlayEfficiency;
     private int powerPlayTakenGoal;
     private int powerPlayPenalty;
     private float powerPlayDefense;
 
+    public StatsHomeMatch() {}
 
-    public StatsHomeMatch(int idMatch, int countMatch, Team homeTeam, int scoredGoal, int onTargetShot, float goalEfficiency, int takenGoal, int savedShot, float savedRate, int powerPlayScoredGoal, int powerPlayOpportunitie, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense) {
+    public StatsHomeMatch(Team homeTeam, int idMatch, int countMatch, int scoredGoal, int onTargetShot, float goalEfficiency, int takenGoal, int savedShot, float savedRate, int powerPlayScoredGoal, int powerPlayOpportunity, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense) {
         this.idMatch = idMatch;
         this.countMatch = countMatch;
         this.homeTeam = homeTeam;
@@ -32,10 +33,70 @@ public class StatsHomeMatch {
         this.savedShot = savedShot;
         this.savedRate = savedRate;
         this.powerPlayScoredGoal = powerPlayScoredGoal;
-        this.powerPlayOpportunitie = powerPlayOpportunitie;
+        this.powerPlayOpportunity = powerPlayOpportunity;
         this.powerPlayEfficiency = powerPlayEfficiency;
         this.powerPlayTakenGoal = powerPlayTakenGoal;
         this.powerPlayPenalty = powerPlayPenalty;
         this.powerPlayDefense = powerPlayDefense;
+    }
+
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
+
+    public int getIdMatch() {
+        return idMatch;
+    }
+
+    public int getCountMatch() {
+        return countMatch;
+    }
+
+    public int getScoredGoal() {
+        return scoredGoal;
+    }
+
+    public int getOnTargetShot() {
+        return onTargetShot;
+    }
+
+    public float getGoalEfficiency() {
+        return goalEfficiency;
+    }
+
+    public int getTakenGoal() {
+        return takenGoal;
+    }
+
+    public int getSavedShot() {
+        return savedShot;
+    }
+
+    public float getSavedRate() {
+        return savedRate;
+    }
+
+    public int getPowerPlayScoredGoal() {
+        return powerPlayScoredGoal;
+    }
+
+    public int getPowerPlayOpportunity() {
+        return powerPlayOpportunity;
+    }
+
+    public float getPowerPlayEfficiency() {
+        return powerPlayEfficiency;
+    }
+
+    public int getPowerPlayTakenGoal() {
+        return powerPlayTakenGoal;
+    }
+
+    public int getPowerPlayPenalty() {
+        return powerPlayPenalty;
+    }
+
+    public float getPowerPlayDefense() {
+        return powerPlayDefense;
     }
 }

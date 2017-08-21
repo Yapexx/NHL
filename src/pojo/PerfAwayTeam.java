@@ -29,4 +29,44 @@ public class PerfAwayTeam {
         this.faceoffWinGlobalRate = faceoffWinGlobalRate;
         this.winnerRate = winnerRate;
     }
+
+    public Team getAwayTeam() {
+        return awayTeam;
+    }
+
+    public int getIdMatch() {
+        return idMatch;
+    }
+
+    public int getCountMatch() {
+        return countMatch;
+    }
+
+    public int getScoredGoal() {
+        return scoredGoal;
+    }
+
+    public int getTakenGoal() {
+        return takenGoal;
+    }
+
+    public float getScoredGoalMean() {
+        return scoredGoalMean;
+    }
+
+    public float getTakenGoalMean() {
+        return takenGoalMean;
+    }
+
+    public float getFaceoffWinPercentageMatch() {
+        return faceoffWinPercentageMatch;
+    }
+
+    public float getFaceoffWinGlobalRate() {
+        return faceoffWinGlobalRate;
+    }
+
+    public float getWinnerRate() {
+        return winnerRate;
+    }
 }
