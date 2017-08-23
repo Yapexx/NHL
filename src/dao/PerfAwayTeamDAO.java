@@ -1,8 +1,7 @@
 package dao;
 
-import pojo.Match;
 import pojo.PerfAwayTeam;
-import pojo.Team;
+import pojo.RevertTableTeam;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +22,7 @@ public class PerfAwayTeamDAO extends DAO<PerfAwayTeam> {
         String query = "INSERT INTO PerfAwayTeam VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query);
-            prepare.setString(1, obj.getAwayTeam().toString());
+            prepare.setString(1, obj.getTeam().getTeamName());
             prepare.setInt(2, obj.getIdMatch());
             prepare.setInt(3, obj.getCountMatch());
             prepare.setInt(4, obj.getScoredGoal());
@@ -54,6 +53,7 @@ public class PerfAwayTeamDAO extends DAO<PerfAwayTeam> {
     }
 
     public PerfAwayTeam find(int id, int count) {
+        RevertTableTeam revertTable = RevertTableTeam.getInstance();
         String query = "SELECT * FROM  WHERE id_match = ? AND count_match = ?";
         PerfAwayTeam perfAwayTeam = new PerfAwayTeam();
         try {
@@ -62,7 +62,7 @@ public class PerfAwayTeamDAO extends DAO<PerfAwayTeam> {
             prepare.setInt(2, count);
             ResultSet result = prepare.executeQuery(query);
             if (result.first()) {
-                perfAwayTeam = new PerfAwayTeam(Team.valueOf(result.getString(1)), result.getInt(2), result.getInt(3), result.getInt(4),
+                perfAwayTeam = new PerfAwayTeam(revertTable.getTeam(result.getString(1)), result.getInt(2), result.getInt(3), result.getInt(4),
                         result.getInt(5), result.getFloat(6), result.getFloat(7), result.getFloat(8), result.getFloat(9), result.getFloat(10) );
                 result.close();
                 prepare.close();

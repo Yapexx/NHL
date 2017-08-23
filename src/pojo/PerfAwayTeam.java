@@ -3,22 +3,12 @@ package pojo;
 /**
  * Created by yannx_000 on 17/06/2017.
  */
-public class PerfAwayTeam {
-    private Team awayTeam;
-    private int idMatch;
-    private int countMatch;
-    private int scoredGoal;
-    private int takenGoal;
-    private float scoredGoalMean;
-    private float takenGoalMean;
-    private float faceoffWinPercentageMatch;
-    private float faceoffWinGlobalRate;
-    private float winnerRate;
+public class PerfAwayTeam extends PerfTeam {
 
     public PerfAwayTeam(){}
 
     public PerfAwayTeam(Team awayTeam, int idMatch, int countMatch, int scoredGoal, int takenGoal, float scoredGoalMean, float takenGoalMean, float winnerRate, float faceoffWinPercentageMatch, float faceoffWinGlobalRate  ) {
-        this.awayTeam = awayTeam;
+        this.team = awayTeam;
         this.idMatch = idMatch;
         this.countMatch = countMatch;
         this.scoredGoal = scoredGoal;
@@ -30,43 +20,4 @@ public class PerfAwayTeam {
         this.winnerRate = winnerRate;
     }
 
-    public Team getAwayTeam() {
-        return awayTeam;
-    }
-
-    public int getIdMatch() {
-        return idMatch;
-    }
-
-    public int getCountMatch() {
-        return countMatch;
-    }
-
-    public int getScoredGoal() {
-        return scoredGoal;
-    }
-
-    public int getTakenGoal() {
-        return takenGoal;
-    }
-
-    public float getScoredGoalMean() {
-        return scoredGoalMean;
-    }
-
-    public float getTakenGoalMean() {
-        return takenGoalMean;
-    }
-
-    public float getFaceoffWinPercentageMatch() {
-        return faceoffWinPercentageMatch;
-    }
-
-    public float getFaceoffWinGlobalRate() {
-        return faceoffWinGlobalRate;
-    }
-
-    public float getWinnerRate() {
-        return winnerRate;
-    }
 }

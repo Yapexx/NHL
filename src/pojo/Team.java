@@ -19,7 +19,7 @@ public enum Team {
     Sabres(7, "Buffalo Sabres"),
     Canadiens(8, "Montréal Canadiens"),
     Senators(9, "Ottawa Senators"),
-    MapleLeafs(10, "Toronto Maple Leafs"), //deal with space
+    MapleLeafs(10, "Toronto Maple Leafs"), //deal with space il faut changer quand je créée mon objet sinon problème de type
     Hurricanes(12, "Carolina Hurricanes"),
     Panthers(13, "Floraida Panthers"),
     Ligthning(14, "Tampa Bay Lightning"),
@@ -64,5 +64,9 @@ public enum Team {
 
     public int getIdTeam() {
         return (this.idTeam);
+    }
+
+    public String getTeamName() {
+        return (this.teamName);
     }
 }
