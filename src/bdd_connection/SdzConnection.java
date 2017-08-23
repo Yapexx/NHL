@@ -13,14 +13,25 @@ public class SdzConnection {
     private String password;
     private static Connection connect;
 
+    /*Si je change pour avoir plusieurs connections
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    */
 
     private SdzConnection() {
         try {
             Class.forName("org.postgresql.Driver");
             connect = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e ) {
             e.printStackTrace();
         }
     }

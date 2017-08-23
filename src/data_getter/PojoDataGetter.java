@@ -22,6 +22,8 @@ public class PojoDataGetter {
         this.conn = SdzConnection.getInstance();
     }
 
+    //Voir pour le nom de la table avec perfteam
+
     private String tableName(boolean ishome) {
         String table = "PerfHomeTeam";
         if (!ishome) {
@@ -38,7 +40,7 @@ public class PojoDataGetter {
         query += "WHERE team_name =  ?";
         PreparedStatement prepare = conn.prepareStatement(query);
         prepare.setString(1, this.tableName(isHome));
-        prepare.setString(2, team.toString());
+        prepare.setString(2, team.getTeamName());
         ResultSet result = prepare.executeQuery(query);
         result.next(); //Pour positionner l'objet sur la première ligne
         count = (int)result.getObject(1);
@@ -55,7 +57,7 @@ public class PojoDataGetter {
         PreparedStatement prepare = conn.prepareStatement(query);
         prepare.setString(1, typeValue);
         prepare.setString(2, this.tableName(isHome));
-        prepare.setString(3, team.toString());
+        prepare.setString(3, team.getTeamName());
         ResultSet result = prepare.executeQuery();
         sum = (int)result.getObject(1);
         result.close();
@@ -74,7 +76,7 @@ public class PojoDataGetter {
         PreparedStatement prepare = conn.prepareStatement(query);
         prepare.setString(1, typeMean);
         prepare.setString(2, this.tableName(isHome));
-        prepare.setString(3, team.toString());
+        prepare.setString(3, team.getTeamName());
         prepare.setInt(4, countMatch);
         ResultSet result = prepare.executeQuery();
         mean = (float)result.getObject(1);

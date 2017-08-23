@@ -3,8 +3,7 @@ package pojo;
 /**
  * Created by yannx_000 on 17/06/2017.
  */
-public class StatsHomeMatch {
-    private Team homeTeam;
+public class StatsHomeMatch extends StatsMatch{
     private int idMatch;
     private int countMatch;
     private int scoredGoal;
@@ -25,7 +24,7 @@ public class StatsHomeMatch {
     public StatsHomeMatch(Team homeTeam, int idMatch, int countMatch, int scoredGoal, int onTargetShot, float goalEfficiency, int takenGoal, int savedShot, float savedRate, int powerPlayScoredGoal, int powerPlayOpportunity, float powerPlayEfficiency, int powerPlayTakenGoal, int powerPlayPenalty, float powerPlayDefense) {
         this.idMatch = idMatch;
         this.countMatch = countMatch;
-        this.homeTeam = homeTeam;
+        this.team = homeTeam;
         this.scoredGoal = scoredGoal;
         this.onTargetShot = onTargetShot;
         this.goalEfficiency = goalEfficiency;
@@ -38,65 +37,5 @@ public class StatsHomeMatch {
         this.powerPlayTakenGoal = powerPlayTakenGoal;
         this.powerPlayPenalty = powerPlayPenalty;
         this.powerPlayDefense = powerPlayDefense;
-    }
-
-    public Team getHomeTeam() {
-        return homeTeam;
-    }
-
-    public int getIdMatch() {
-        return idMatch;
-    }
-
-    public int getCountMatch() {
-        return countMatch;
-    }
-
-    public int getScoredGoal() {
-        return scoredGoal;
-    }
-
-    public int getOnTargetShot() {
-        return onTargetShot;
-    }
-
-    public float getGoalEfficiency() {
-        return goalEfficiency;
-    }
-
-    public int getTakenGoal() {
-        return takenGoal;
-    }
-
-    public int getSavedShot() {
-        return savedShot;
-    }
-
-    public float getSavedRate() {
-        return savedRate;
-    }
-
-    public int getPowerPlayScoredGoal() {
-        return powerPlayScoredGoal;
-    }
-
-    public int getPowerPlayOpportunity() {
-        return powerPlayOpportunity;
-    }
-
-    public float getPowerPlayEfficiency() {
-        return powerPlayEfficiency;
-    }
-
-    public int getPowerPlayTakenGoal() {
-        return powerPlayTakenGoal;
-    }
-
-    public int getPowerPlayPenalty() {
-        return powerPlayPenalty;
-    }
-
-    public float getPowerPlayDefense() {
-        return powerPlayDefense;
     }
 }

@@ -1,8 +1,7 @@
 package dao;
 
+import pojo.RevertTableTeam;
 import pojo.StatsAwayMatch;
-import pojo.StatsHomeMatch;
-import pojo.Team;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +22,7 @@ public class StatsAwayMatchDAO extends DAO<StatsAwayMatch> {
         String query = "INSERT INTO StatsAwayMatch VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query);
-            prepare.setString(1, obj.getAwayTeam().toString());
+            prepare.setString(1, obj.getAwayTeam().getTeamName());
             prepare.setInt(2, obj.getIdMatch());
             prepare.setInt(3, obj.getCountMatch());
             prepare.setInt(4, obj.getScoredGoal());
@@ -59,6 +58,7 @@ public class StatsAwayMatchDAO extends DAO<StatsAwayMatch> {
     }
 
     public StatsAwayMatch find(int id, int count) {
+        RevertTableTeam revertTable = RevertTableTeam.getInstance();
         String query = "SELECT * FROM  WHERE id_match = ? AND count_match = ?";
         StatsAwayMatch statsAwayMatch = new StatsAwayMatch();
         try {
@@ -67,7 +67,7 @@ public class StatsAwayMatchDAO extends DAO<StatsAwayMatch> {
             prepare.setInt(2, count);
             ResultSet result = prepare.executeQuery(query);
             if (result.first()) {
-                statsAwayMatch = new StatsAwayMatch(Team.valueOf(result.getString(1)), result.getInt(2), result.getInt(3), result.getInt(4),
+                statsAwayMatch = new StatsAwayMatch(revertTable.getTeam(result.getString(1)), result.getInt(2), result.getInt(3), result.getInt(4),
                         result.getInt(5), result.getFloat(6), result.getInt(7), result.getInt(8), result.getFloat(9), result.getInt(10),
                         result.getInt(11), result.getFloat(12), result.getInt(13), result.getInt(14), result.getFloat(15));
                 result.close();
