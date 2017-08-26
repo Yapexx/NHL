@@ -29,15 +29,17 @@ public class dataCreation {
             while (count < gameToTreat) {
                 globalMatchReader.parseGame();
                 rd.setUrl(globalMatchReader.getLinkDetailMatch());
-                JsonDetailMatch detailMatchReader = new JsonDetailMatch(rd.getReader());
+                JsonDetailMatch detailMatchReader = new JsonDetailMatch(rd.getReader(), globalMatchReader.getMatch());
                 detailMatchReader.parseDetailGame();
 
+                /*
                 //Add data into the base
                 matchDAO.create(globalMatchReader.getMatch());
                 perfAwayTeamDAO.create(detailMatchReader.getPerfAwayTeam());
                 perfHomeTeamDAO.create(detailMatchReader.getPerfHomeTeam());
                 statsAwayMatchDAO.create(detailMatchReader.getStatsAwayMatch());
                 statsHomeMatchDAO.create(detailMatchReader.getStatsHomeMatch());
+                */
 
                 count = count + 1;
             }

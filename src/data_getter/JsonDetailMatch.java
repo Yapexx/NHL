@@ -12,13 +12,15 @@ import java.sql.SQLException;
  */
 
 class JsonDetailMatch extends JsonTools {
+    private Match match;
     private StatsHomeMatch statsHomeMatch;
     private StatsAwayMatch statsAwayMatch;
     private PerfHomeTeam perfHomeTeam;
     private PerfAwayTeam perfAwayTeam;
 
-    JsonDetailMatch(JsonReader reader) {
+    JsonDetailMatch(JsonReader reader, Match match) {
         super(reader);
+        this.match = match;
     }
 
     StatsHomeMatch getStatsHomeMatch() {
@@ -38,14 +40,13 @@ class JsonDetailMatch extends JsonTools {
     }
 
     void parseDetailGame() throws IOException {
-        PojoDataGetter treatment;
-        int onTargetShotAway = 0, onTargetShotHome =0, savedShotAway = 0, savedShotHome = 0, powerPlayOpportunity = 0, powerPlayScoredGoal = 0, powerPlayPenalty = 0, powerPlayTakenGoal = 0;
+        int onTargetShotAway = 0, onTargetShotHome =0, powerPlayOpportunity = 0, powerPlayScoredGoal = 0, powerPlayPenalty = 0, powerPlayTakenGoal = 0;
         int  scoredGoal = 0, takenGoal = 0;
         float faceOfWinPercent = 0;
 
         //La première team est toujours celle à l'extérieur
 
-        if(!(this.findName("boxscore"))){ //On a pas vraiment besoin de boxscore
+        if(!(this.findName("boxscore"))){
             System.out.print("NAME boxscore absent du json");
         }
 
@@ -62,7 +63,7 @@ class JsonDetailMatch extends JsonTools {
         }
 
         if (this.findName("powerPlayOpportunities")) {
-            powerPlayOpportunity = this.reader.nextInt(); //Surement mettre à -1 si null
+            powerPlayOpportunity = this.reader.nextInt();
         }
 
         if(this.findName("faceOffWinPercentage")){
@@ -79,7 +80,7 @@ class JsonDetailMatch extends JsonTools {
         }
 
         if(this.findName("shots")){
-            savedShotAway = this.reader.nextInt();
+            onTargetShotAway = this.reader.nextInt();
         }
 
         if (this.findName("powerPlayGoals")) {
@@ -87,22 +88,20 @@ class JsonDetailMatch extends JsonTools {
         }
 
         if (this.findName("powerPlayOpportunities")) {
-            powerPlayPenalty = this.reader.nextInt(); //Surement mettre à -1 si null
+            powerPlayPenalty = this.reader.nextInt();
         }
 
-        //Je peux avoir et l'id du match et les team domicile extérieur, Vérifier pour les buts la question de l'overtime
+        //Always score after overtime but not shootout
+        this.perfHomeTeam = new PerfHomeTeam(this.match.getHomeTeam(), this.match.getIdMatch(), 0, scoredGoal, takenGoal, 0, 0, faceOfWinPercent, 0, 0);
+        this.perfAwayTeam = new PerfAwayTeam(this.match.getAwayTeam(), this.match.getIdMatch(), 0, takenGoal, scoredGoal, 0, 0, 1-faceOfWinPercent, 0, 0);
 
-        this.perfHomeTeam = new PerfHomeTeam();
-        this.perfAwayTeam = new PerfAwayTeam();
-
-        this.statsAwayMatch = new StatsAwayMatch(team, 0, 0, scoredGoal , onTargetShotAway, 0, takenGoal, savedShotAway, 0, powerPlayScoredGoal, powerPlayOpportunity, 0,
+        this.statsAwayMatch = new StatsAwayMatch(this.match.getAwayTeam(), this.match.getIdMatch(), 0, scoredGoal , onTargetShotAway, 0, takenGoal, onTargetShotHome-takenGoal, 0, powerPlayScoredGoal, powerPlayOpportunity, 0,
                 powerPlayTakenGoal, powerPlayPenalty, 0 );
-        this.statsHomeMatch = new StatsHomeMatch(team, 0, 0, takenGoal, onTargetShotHome, 0, savedShotHome, 0, powerPlayTakenGoal, powerPlayPenalty, 0,
+        this.statsHomeMatch = new StatsHomeMatch(this.match.getHomeTeam(), this.match.getIdMatch(), 0, takenGoal , onTargetShotHome, 0, scoredGoal, onTargetShotAway-takenGoal, 0, powerPlayTakenGoal, powerPlayPenalty, 0,
                 powerPlayScoredGoal, powerPlayOpportunity, 0 );
 
 
-
-        /**
+        /*
          * Class to calcul all missing data like means
          */
         class DataCalculation{

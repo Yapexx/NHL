@@ -4,20 +4,6 @@ package pojo;
  * Created by yannx_000 on 17/06/2017.
  */
 public class StatsHomeMatch extends StatsMatch{
-    private int idMatch;
-    private int countMatch;
-    private int scoredGoal;
-    private int onTargetShot;
-    private float goalEfficiency;
-    private int takenGoal;
-    private int savedShot;
-    private float savedRate;
-    private int powerPlayScoredGoal;
-    private int powerPlayOpportunity;
-    private float powerPlayEfficiency;
-    private int powerPlayTakenGoal;
-    private int powerPlayPenalty;
-    private float powerPlayDefense;
 
     public StatsHomeMatch() {}
 
