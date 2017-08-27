@@ -22,7 +22,7 @@ public class StatsAwayMatchDAO extends DAO<StatsAwayMatch> {
         String query = "INSERT INTO StatsAwayMatch VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query);
-            prepare.setString(1, obj.getAwayTeam().getTeamName());
+            prepare.setString(1, obj.getTeam().getTeamName());
             prepare.setInt(2, obj.getIdMatch());
             prepare.setInt(3, obj.getCountMatch());
             prepare.setInt(4, obj.getScoredGoal());
@@ -37,10 +37,11 @@ public class StatsAwayMatchDAO extends DAO<StatsAwayMatch> {
             prepare.setInt(13, obj.getPowerPlayTakenGoal());
             prepare.setInt(14, obj.getPowerPlayPenalty());
             prepare.setFloat(15, obj.getPowerPlayDefense());
-            prepare.executeUpdate(query);
+            prepare.executeUpdate();
             prepare.close();
         } catch (SQLException e) {
             System.out.println("Unable to insert match in database");
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -59,7 +60,7 @@ public class StatsAwayMatchDAO extends DAO<StatsAwayMatch> {
 
     public StatsAwayMatch find(int id, int count) {
         RevertTableTeam revertTable = RevertTableTeam.getInstance();
-        String query = "SELECT * FROM  WHERE id_match = ? AND count_match = ?";
+        String query = "SELECT * FROM StatsAwayMatch  WHERE id_match = ? AND count_match = ?";
         StatsAwayMatch statsAwayMatch = new StatsAwayMatch();
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query, ResultSet.TYPE_SCROLL_SENSITIVE);

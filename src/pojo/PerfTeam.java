@@ -74,4 +74,13 @@ public abstract class PerfTeam {
     public void setWinnerRate(float winnerRate) {
         this.winnerRate = winnerRate;
     }
+
+    public String toString() {
+        String info = this.idMatch + "/" + this.countMatch + "/" + this.team + "/" + this.scoredGoal + "/" + this.takenGoal + "/" + " Moyenne : " + this.scoredGoalMean + "/" + this.takenGoalMean
+                + "/" + this.faceoffWinPercentageMatch + "/" + "  faceoffglobalrate : " + this.faceoffWinGlobalRate + "/" + this.winnerRate;
+        return (info);
+    }
+
+    public abstract String tableName();
+
 }

@@ -24,5 +24,9 @@ public class StatsAwayMatch extends StatsMatch {
         this.powerPlayPenalty = powerPlayPenalty;
         this.powerPlayDefense = powerPlayDefense;
     }
+
+    public String tableName() {
+        return ("StatsAwayMatch");
+    }
 }
 

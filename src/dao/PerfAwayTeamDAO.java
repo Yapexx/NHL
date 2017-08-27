@@ -32,10 +32,11 @@ public class PerfAwayTeamDAO extends DAO<PerfAwayTeam> {
             prepare.setFloat(8, obj.getFaceoffWinPercentageMatch());
             prepare.setFloat(9, obj.getFaceoffWinGlobalRate());
             prepare.setFloat(10, obj.getWinnerRate());
-            prepare.executeUpdate(query);
+            prepare.executeUpdate();
             prepare.close();
         } catch (SQLException e) {
             System.out.println("Unable to insert match in database");
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -54,7 +55,7 @@ public class PerfAwayTeamDAO extends DAO<PerfAwayTeam> {
 
     public PerfAwayTeam find(int id, int count) {
         RevertTableTeam revertTable = RevertTableTeam.getInstance();
-        String query = "SELECT * FROM  WHERE id_match = ? AND count_match = ?";
+        String query = "SELECT * FROM PerfAwayTeam WHERE id_match = ? AND count_match = ?";
         PerfAwayTeam perfAwayTeam = new PerfAwayTeam();
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query, ResultSet.TYPE_SCROLL_SENSITIVE);

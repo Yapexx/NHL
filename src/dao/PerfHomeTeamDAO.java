@@ -19,10 +19,10 @@ public class PerfHomeTeamDAO extends DAO<PerfHomeTeam>{
 
     @Override
     public boolean create(PerfHomeTeam obj) {
-        String query = "INSERT INTO PerfAwayTeam VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO PerfHomeTeam VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query);
-            prepare.setString(1, obj.getHomeTeam().getTeamName());
+            prepare.setString(1, obj.getTeam().getTeamName());
             prepare.setInt(2, obj.getIdMatch());
             prepare.setInt(3, obj.getCountMatch());
             prepare.setInt(4, obj.getScoredGoal());
@@ -32,10 +32,11 @@ public class PerfHomeTeamDAO extends DAO<PerfHomeTeam>{
             prepare.setFloat(8, obj.getFaceoffWinPercentageMatch());
             prepare.setFloat(9, obj.getFaceoffWinGlobalRate());
             prepare.setFloat(10, obj.getWinnerRate());
-            prepare.executeUpdate(query);
+            prepare.executeUpdate();
             prepare.close();
         } catch (SQLException e) {
             System.out.println("Unable to insert match in database");
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -54,7 +55,7 @@ public class PerfHomeTeamDAO extends DAO<PerfHomeTeam>{
 
     public PerfHomeTeam find(int id, int count) {
         RevertTableTeam revertTable = RevertTableTeam.getInstance();
-        String query = "SELECT * FROM  WHERE id_match = ? AND count_match = ?";
+        String query = "SELECT * FROM PerfHomeTeam WHERE id_match = ? AND count_match = ?";
         PerfHomeTeam perfHomeTeam = new PerfHomeTeam();
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query, ResultSet.TYPE_SCROLL_SENSITIVE);

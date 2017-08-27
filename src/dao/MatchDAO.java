@@ -19,7 +19,7 @@ public class MatchDAO extends DAO<Match> {
 
     @Override
     public boolean create(Match obj) {
-        String query = "INSERT INTO Game VALUES(?, ?, ?, ?, ?, ?) ";
+        String query = "INSERT INTO game VALUES(?, ?, ?, ?, ?, ?) ";
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query);
             prepare.setInt(1, obj.getIdMatch());
@@ -28,9 +28,10 @@ public class MatchDAO extends DAO<Match> {
             prepare.setBoolean(4, obj.getOvertime());
             prepare.setBoolean(5, obj.getShootout());
             prepare.setString(6, obj.getWinner().toString());
-            prepare.executeUpdate(query);
+            prepare.executeUpdate();
             prepare.close();
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Unable to insert match in database");
             return false;
         }

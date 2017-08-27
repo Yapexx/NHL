@@ -8,9 +8,9 @@ import java.sql.SQLException;
  * Created by stagiaire3 on 23/06/2017.
  */
 public class SdzConnection {
-    private String url;
-    private String user;
-    private String password;
+    private String url = "jdbc:postgresql://localhost:5432/NHL_2014/2015";
+    private String user = "postgres";
+    private String password = "Talonch1";
     private static Connection connect;
 
     /*Si je change pour avoir plusieurs connections

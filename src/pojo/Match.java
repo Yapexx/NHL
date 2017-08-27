@@ -55,4 +55,9 @@ public class Match {
     public Team getWinner() {
         return winner;
     }
+
+    public String toString() {
+        String info = this.idMatch + "/" + this.homeTeam + "/" + this.awayTeam + "/" + this.overtime + "/" + this.shootOut + "/" + this.winner;
+        return (info);
+    }
 }

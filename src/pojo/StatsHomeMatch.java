@@ -24,4 +24,8 @@ public class StatsHomeMatch extends StatsMatch{
         this.powerPlayPenalty = powerPlayPenalty;
         this.powerPlayDefense = powerPlayDefense;
     }
+
+    public String tableName() {
+        return ("StatsHomeMatch");
+    }
 }

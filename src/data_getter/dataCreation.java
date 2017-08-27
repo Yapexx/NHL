@@ -24,9 +24,11 @@ public class dataCreation {
         try {
             ReaderProvider rd = ReaderProvider.getInstance(url);
             JsonGlobalMatch globalMatchReader = new JsonGlobalMatch(rd.getReader());
+            globalMatchReader.numberTotalMatch();
             gameToTreat = globalMatchReader.getTotalGames();
 
-            while (count < gameToTreat) {
+            //gameToTreat = 1;
+            while (count <= gameToTreat) {
                 globalMatchReader.parseGame();
                 rd.setUrl(globalMatchReader.getLinkDetailMatch());
                 JsonDetailMatch detailMatchReader = new JsonDetailMatch(rd.getReader(), globalMatchReader.getMatch());
@@ -41,6 +43,14 @@ public class dataCreation {
                 statsHomeMatchDAO.create(detailMatchReader.getStatsHomeMatch());
                 */
 
+                System.out.println("");
+                System.out.println("Match traité numéro : " + count);
+                System.out.println(globalMatchReader.getMatch().toString());
+                System.out.println(detailMatchReader.getPerfAwayTeam().toString());
+                System.out.println(detailMatchReader.getPerfHomeTeam().toString());
+                System.out.println(detailMatchReader.getStatsAwayMatch().toString());
+                System.out.println(detailMatchReader.getStatsHomeMatch().toString());
+
                 count = count + 1;
             }
         }
@@ -49,6 +59,7 @@ public class dataCreation {
             e.printStackTrace();
         }
 
+        count = count - 1;
         System.out.println(count + "games have been added to the database");
     }
 }

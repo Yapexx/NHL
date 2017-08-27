@@ -7,7 +7,7 @@ public class PerfHomeTeam extends PerfTeam {
 
     public PerfHomeTeam(){}
 
-    public PerfHomeTeam(Team homeTeam, int idMatch, int countMatch, int scoredGoal, int takenGoal, float scoredGoalMean, float takenGoalMean, float winnerRate, float faceoffWinPercentageMatch, float faceoffWinGlobalRate ) {
+    public PerfHomeTeam(Team homeTeam, int idMatch, int countMatch, int scoredGoal, int takenGoal, float scoredGoalMean, float takenGoalMean,  float faceoffWinPercentageMatch, float faceoffWinGlobalRate, float winnerRate) {
         this.team = homeTeam;
         this.idMatch = idMatch;
         this.countMatch = countMatch;
@@ -20,4 +20,7 @@ public class PerfHomeTeam extends PerfTeam {
         this.winnerRate = winnerRate;
     }
 
+    public String tableName() {
+        return ("PerfHomeTeam");
+    }
 }

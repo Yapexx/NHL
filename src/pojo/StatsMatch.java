@@ -99,4 +99,14 @@ public abstract class StatsMatch {
     public void setPowerPlayDefense(float powerPlayDefense) {
         this.powerPlayDefense = powerPlayDefense;
     }
+
+    public String toString() {
+        String info = this.idMatch + "/" + this.countMatch + "/" + this.team + "/" + this.scoredGoal + "/" + this.takenGoal + "/" + this.onTargetShot + "/" + this.goalEfficiency
+                + "/" + this.savedShot + "/" + " SAVED rate : " + this.savedRate + "/" + this.powerPlayScoredGoal +  "/" + this.powerPlayOpportunity + "/" + this.powerPlayEfficiency + "/" + this.powerPlayTakenGoal
+                + "/" + this.powerPlayPenalty + "/" + this.powerPlayDefense;
+        return (info);
+    }
+
+    public abstract String tableName();
 }
+

@@ -22,44 +22,33 @@ public class PojoDataGetter {
         this.conn = SdzConnection.getInstance();
     }
 
-    //Voir pour le nom de la table avec perfteam
 
-    private String tableName(boolean ishome) {
-        String table = "PerfHomeTeam";
-        if (!ishome) {
-            table = "PerfAwayTeam";
-        }
-        return (table);
-    }
-
-    public int getCoutMatch(Team team, boolean isHome) throws java.sql.SQLException { //Pour l'exception voir de quel type il s'agit pas exemple si l'objet n'est pas trouver
+    public int getCoutMatch(Team team, String tableName) throws java.sql.SQLException { //Pour l'exception voir de quel type il s'agit pas exemple si l'objet n'est pas trouver
         //Seach in the table with the smallest number of columns
         int count = 0;
         //Il faudra déterminer s'il s'agit de la team domicile ou extérieur
-        String query = "SELECT Max(number_game) FROM ? ";
-        query += "WHERE team_name =  ?";
+        String query = "SELECT Max(count_match) FROM " + tableName;
+        query += " WHERE team_name = ?";
         PreparedStatement prepare = conn.prepareStatement(query);
-        prepare.setString(1, this.tableName(isHome));
-        prepare.setString(2, team.getTeamName());
-        ResultSet result = prepare.executeQuery(query);
+        prepare.setString(1, team.getTeamName());
+        ResultSet result = prepare.executeQuery();
         result.next(); //Pour positionner l'objet sur la première ligne
-        count = (int)result.getObject(1);
+        count = result.getInt(1);
         result.close();
         prepare.close();
         return (count);
     }
 
     //Récupérer les différents taux dépendant d'une somme
-    public int  selectSumValue(Team team, boolean isHome, String typeValue) throws java.sql.SQLException {
+    public int  selectSumValue(Team team, String tableName, String typeValue) throws java.sql.SQLException {
         int sum = 0;
-        String query = "SELECT SUM(?) FROM ?";
-        query += "WHERE team_name = ?";
+        String query = "SELECT SUM(" + typeValue + ") FROM " + tableName;
+        query += " WHERE team_name = ? ";
         PreparedStatement prepare = conn.prepareStatement(query);
-        prepare.setString(1, typeValue);
-        prepare.setString(2, this.tableName(isHome));
-        prepare.setString(3, team.getTeamName());
+        prepare.setString(1, team.getTeamName());
         ResultSet result = prepare.executeQuery();
-        sum = (int)result.getObject(1);
+        result.next();
+        sum = (int)result.getInt(1);
         result.close();
         prepare.close();
         return (sum);
@@ -67,19 +56,17 @@ public class PojoDataGetter {
 
 
     //Fonction générale pour récupérer toutes les moyennes
-
-    public float selectMean(int countMatch, Team team, boolean isHome, String typeMean) throws java.sql.SQLException {
+    public float selectMean(int countMatch, Team team, String tableName, String typeMean) throws java.sql.SQLException {
         float mean = 0;
-        String query = "SELECT ? FROM ? ";
-        query += "WHERE team_name = ?";
-        query += "AND count = ?";
+        String query = "SELECT " + typeMean + " FROM " + tableName;
+        query += " WHERE team_name = ? ";
+        query += "AND count_match = ? ";
         PreparedStatement prepare = conn.prepareStatement(query);
-        prepare.setString(1, typeMean);
-        prepare.setString(2, this.tableName(isHome));
-        prepare.setString(3, team.getTeamName());
-        prepare.setInt(4, countMatch);
+        prepare.setString(1, team.getTeamName());
+        prepare.setInt(2, countMatch);
         ResultSet result = prepare.executeQuery();
-        mean = (float)result.getObject(1);
+        result.next();
+        mean = result.getFloat(1);
         result.close();
         prepare.close();
         return (mean);

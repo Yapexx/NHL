@@ -44,6 +44,7 @@ public class JsonGlobalMatch extends JsonTools {
     private void setLinkDetailMatch(int idMatch) {
         String link = "https://statsapi.web.nhl.com/api/v1/game/";
         link = link + idMatch + "/feed/live";
+        this.linkDetailMatch = link;
     }
 
     /**
@@ -112,11 +113,6 @@ public class JsonGlobalMatch extends JsonTools {
         }
 
         this.setMatch(idGame, homeTeam, awayTeam, overtime, hasShootout, winner);
-
-
-        //System.out.println(idGame + " " + homeScore + " " + awayScore + " " + homeTeam + awayTeam + hasShootout + overtime + " " +winner);
-
-
 
     }
 }
