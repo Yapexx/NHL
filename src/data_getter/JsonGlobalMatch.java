@@ -65,6 +65,11 @@ public class JsonGlobalMatch extends JsonTools {
            System.out.println("NAME gamepk not found in Json");
         }
 
+        if (this.findName("gameType"))
+            if(!(this.reader.nextString().equals("R"))){
+                System.out.println("Le game n'est pas dans la saison regulière");
+                System.exit(0);
+            }
 
         if (this.findName("score")) {
             awayScore = this.reader.nextInt();

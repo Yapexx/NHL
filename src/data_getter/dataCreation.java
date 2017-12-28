@@ -27,29 +27,32 @@ public class dataCreation {
             globalMatchReader.numberTotalMatch();
             gameToTreat = globalMatchReader.getTotalGames();
 
-            //gameToTreat = 1;
+            System.out.println(gameToTreat + " to be treated");
             while (count <= gameToTreat) {
                 globalMatchReader.parseGame();
                 rd.setUrl(globalMatchReader.getLinkDetailMatch());
                 JsonDetailMatch detailMatchReader = new JsonDetailMatch(rd.getReader(), globalMatchReader.getMatch());
                 detailMatchReader.parseDetailGame();
 
-                /*
+                ///*
                 //Add data into the base
                 matchDAO.create(globalMatchReader.getMatch());
                 perfAwayTeamDAO.create(detailMatchReader.getPerfAwayTeam());
                 perfHomeTeamDAO.create(detailMatchReader.getPerfHomeTeam());
                 statsAwayMatchDAO.create(detailMatchReader.getStatsAwayMatch());
                 statsHomeMatchDAO.create(detailMatchReader.getStatsHomeMatch());
-                */
+                //*/
+                System.out.println("Game number : " + count);
 
+                /*
                 System.out.println("");
-                System.out.println("Match traité numéro : " + count);
+                System.out.println("Match processed number  : " + count);
                 System.out.println(globalMatchReader.getMatch().toString());
                 System.out.println(detailMatchReader.getPerfAwayTeam().toString());
                 System.out.println(detailMatchReader.getPerfHomeTeam().toString());
                 System.out.println(detailMatchReader.getStatsAwayMatch().toString());
                 System.out.println(detailMatchReader.getStatsHomeMatch().toString());
+                */
 
                 count = count + 1;
             }
@@ -60,6 +63,6 @@ public class dataCreation {
         }
 
         count = count - 1;
-        System.out.println(count + "games have been added to the database");
+        System.out.println(count + " games have been added to the database");
     }
 }

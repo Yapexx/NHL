@@ -38,7 +38,7 @@ public enum Team {
     Sharks(28, "San Jose Sharks"),
     BlueJackets(29, "Colombus Blue Jackets"), //space
     Wild(30, "Minnesota Wild"),
-    Jets(33, "Winnipeg Jets"),
+    Jets(52, "Winnipeg Jets"),
     Coyotes(53, "Arizona Coyotes"),
     GoldenKnights(54, "Vegas Golden Knights"); //space
 

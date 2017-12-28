@@ -30,10 +30,10 @@ public class DummyLine {
             StatsAwayMatchDAO statsAwayMatchDAO = new StatsAwayMatchDAO(SdzConnection.getInstance());
             StatsHomeMatchDAO statsHomeMatchDAO = new StatsHomeMatchDAO(SdzConnection.getInstance());
 
-            //perfAwayTeamDAO.create(perfAwayTeam);
+            perfAwayTeamDAO.create(perfAwayTeam);
             perfHomeTeamDAO.create(perfHomeTeam);
             statsHomeMatchDAO.create(statsHomeMatch);
-            //statsAwayMatchDAO.create(statsAwayMatch);
+            statsAwayMatchDAO.create(statsAwayMatch);
         }
     }
 }

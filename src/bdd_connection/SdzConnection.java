@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * Created by stagiaire3 on 23/06/2017.
  */
 public class SdzConnection {
-    private String url = "jdbc:postgresql://localhost:5432/NHL_2014/2015";
+    private String url = "jdbc:postgresql://localhost:5432/NHL_2017/2018";
     private String user = "postgres";
     private String password = "Talonch1";
     private static Connection connect;

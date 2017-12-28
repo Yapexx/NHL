@@ -23,8 +23,8 @@ public class MatchDAO extends DAO<Match> {
         try {
             PreparedStatement prepare = this.connect.prepareStatement(query);
             prepare.setInt(1, obj.getIdMatch());
-            prepare.setString(2, obj.getHomeTeam().toString());
-            prepare.setString(3, obj.getAwayTeam().toString());
+            prepare.setString(2, obj.getHomeTeam().getTeamName());
+            prepare.setString(3, obj.getAwayTeam().getTeamName());
             prepare.setBoolean(4, obj.getOvertime());
             prepare.setBoolean(5, obj.getShootout());
             prepare.setString(6, obj.getWinner().toString());
